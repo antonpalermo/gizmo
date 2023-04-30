@@ -1,6 +1,15 @@
-import '@gizmo/styles/globals.css'
-import type { AppProps } from 'next/app'
+import type { AppProps } from "next/app";
+import { SessionProvider } from "next-auth/react";
 
-export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+import "@gizmo/styles/globals.css";
+
+export default function App({
+  Component,
+  pageProps: { session, ...props }
+}: AppProps) {
+  return (
+    <SessionProvider session={session}>
+      <Component {...props} />
+    </SessionProvider>
+  );
 }
