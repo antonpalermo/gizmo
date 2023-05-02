@@ -11,7 +11,12 @@ export interface EditorAreaProps {
 export default function EditorArea({ isEditable }: EditorAreaProps) {
   const editor = useEditor({
     extensions: [StarterKit],
-    editable: isEditable
+    editable: isEditable,
+    editorProps: {
+      attributes: {
+        class: "prose h-96 mx-auto focus:outline-none"
+      }
+    }
   });
 
   useEffect(() => {
