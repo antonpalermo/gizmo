@@ -14,7 +14,7 @@ export default function EditorArea({ isEditable }: EditorAreaProps) {
     editable: isEditable,
     editorProps: {
       attributes: {
-        class: "prose h-96 mx-auto focus:outline-none"
+        class: "prose h-full mx-auto focus:outline-none"
       }
     }
   });
@@ -26,5 +26,5 @@ export default function EditorArea({ isEditable }: EditorAreaProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isEditable]);
 
-  return <EditorContent editor={editor} />;
+  return <EditorContent className="h-full" editor={editor} />;
 }

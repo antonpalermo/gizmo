@@ -13,11 +13,9 @@ export default function Home() {
   return (
     <main className={`${inter.className}`}>
       <Sidenav />
-      <div className="absolute inset-y-0 left-64 right-0 mx-10">
-        <Navbar />
-        <div className="relative top-24">
-          <EditorArea isEditable={true} />
-        </div>
+      <Navbar />
+      <div className="absolute bottom-0 left-64 right-0 top-20">
+        <EditorArea isEditable={true} />
       </div>
     </main>
   );
