@@ -1,10 +1,9 @@
-import { useState } from "react";
 import { Inter } from "next/font/google";
+import { useScratchStore } from "@gizmo/store";
 
 import Navbar from "@gizmo/components/Navbar";
 import Sidenav from "@gizmo/components/Sidenav";
 import EditorArea from "@gizmo/components/EditorArea";
-import { useScratchStore } from "@gizmo/store";
 
 const inter = Inter({
   subsets: ["latin"],
