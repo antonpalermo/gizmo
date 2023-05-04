@@ -1,11 +1,14 @@
 import { create } from "zustand";
+import { Scratch } from "@prisma/client";
 
 interface ScratchState {
-  scratch: [];
-  selectedScratch: string | undefined;
+  scratches: Scratch[];
+  selectedScratch: Scratch | undefined;
+  addScratch?: (scratch: Scratch) => void
 }
 
 export const useScratchStore = create<ScratchState>(set => ({
-  scratch: [],
-  selectedScratch: undefined
+  scratches: [],
+  selectedScratch: undefined,
+  // addScratch: (scratch: Scratch) =>
 }));

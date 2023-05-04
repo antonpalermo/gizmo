@@ -10,7 +10,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Scratches {
+model Scratch {
   id          String   @id @unique @default(cuid())
   header      String   @default("Untitled Scratch")
   owner       String   @unique
