@@ -14,10 +14,14 @@ export default async function handler(
     switch (req.method) {
       case "POST":
         const { header } = req.body;
-        const createdScratch = await prisma.scratches.create({
+        const createdScratch = await prisma.scratch.create({
           data: { header, owner: session?.user?.email as string }
         });
         return res.status(201).json(createdScratch);
+
+      case "GET":
+        const findAllScratches = await prisma.scratch.findMany()
+        return res.status(200).json(findAllScratches)
 
       default:
         return res.status(405).end();
