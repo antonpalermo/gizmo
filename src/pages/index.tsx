@@ -1,7 +1,11 @@
 import { useEffect } from "react";
+
 import { Inter } from "next/font/google";
+import { GetServerSideProps } from "next";
 
 import { useScratchStore } from "@gizmo/store";
+
+import baseUrl from "@gizmo/utils/baseUrl";
 
 import Navbar from "@gizmo/components/Navbar";
 import Sidenav from "@gizmo/components/Sidenav";
@@ -12,10 +16,24 @@ const inter = Inter({
   variable: "--font-inter"
 });
 
-export default function Home() {
-  const [scratches, initScratch] = useScratchStore(
-    ({ scratches, initScratch }) => [scratches, initScratch]
-  );
+export const getServerSideProps: GetServerSideProps = async () => {
+  const request = await fetch(`${baseUrl()}/api/scratches`);
+  const scratches = await request.json();
+
+  return {
+    props: { scratches }
+  };
+};
+
+export interface HomeProps {
+  scratches: [];
+}
+
+export default function Home({ scratches }: HomeProps) {
+  const [_, initScratch] = useScratchStore(({ scratches, initScratch }) => [
+    scratches,
+    initScratch
+  ]);
 
   useEffect(() => {
     initScratch();
