@@ -30,13 +30,12 @@ export interface HomeProps {
 }
 
 export default function Home({ scratches }: HomeProps) {
-  const [_, initScratch] = useScratchStore(({ scratches, initScratch }) => [
-    scratches,
-    initScratch
-  ]);
+  const [scratch, setScratches] = useScratchStore(
+    ({ scratch, setScratches }) => [scratch, setScratches]
+  );
 
   useEffect(() => {
-    initScratch();
+    setScratches(scratches);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -45,7 +44,7 @@ export default function Home({ scratches }: HomeProps) {
       <Sidenav />
       <Navbar />
       <div className="absolute bottom-0 left-64 right-0 top-20">
-        {!scratches ? (
+        {!scratch ? (
           <h1>No Selected Strach</h1>
         ) : (
           <EditorArea isEditable={true} />

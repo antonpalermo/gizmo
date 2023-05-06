@@ -8,7 +8,7 @@ interface ScratchState {
 
 interface ScratchAction {
   addScratch: (scratch: Scratch) => void;
-  initScratch: () => Promise<void>;
+  setScratches: (scratches: Scratch[]) => void;
 }
 
 export const useScratchStore = create<ScratchState & ScratchAction>(set => ({
@@ -16,9 +16,5 @@ export const useScratchStore = create<ScratchState & ScratchAction>(set => ({
   scratches: [],
   addScratch: scratch =>
     set(state => ({ scratches: [...state.scratches, scratch] })),
-  initScratch: async () => {
-    const request = await fetch("/api/scratches");
-    const scratches = await request.json()
-    set(() => ({ scratches }));
-  }
+  setScratches: (scratches: Scratch[]) => set(() => ({ scratches }))
 }));
