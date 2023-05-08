@@ -7,6 +7,13 @@ export default function Sidenav() {
   return (
     <div className="fixed inset-y-0 left-0 w-64 border border-gray-300 bg-gray-100">
       <div className="my-10 space-y-1 px-3">
+        <Link
+          href={{ pathname: "/" }}
+          className="block rounded px-3 py-2 text-sm font-medium hover:bg-gray-200"
+        >
+          Home
+        </Link>
+        <hr />
         {scratches.map(scratch => (
           <Link
             key={scratch.id}

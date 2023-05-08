@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { ReactElement, useEffect } from "react";
 
 import { Inter } from "next/font/google";
 import { GetServerSideProps } from "next";
@@ -10,6 +10,7 @@ import baseUrl from "@gizmo/utils/baseUrl";
 import Navbar from "@gizmo/components/Navbar";
 import Sidenav from "@gizmo/components/Sidenav";
 import EditorArea from "@gizmo/components/EditorArea";
+import Layout from "@gizmo/components/Layout";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -39,17 +40,9 @@ export default function Home({ scratches }: HomeProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return (
-    <main className={`${inter.className}`}>
-      <Sidenav />
-      <Navbar />
-      <div className="absolute bottom-0 left-64 right-0 top-20">
-        {!scratch ? (
-          <h1>No Selected Strach</h1>
-        ) : (
-          <EditorArea isEditable={true} />
-        )}
-      </div>
-    </main>
-  );
+  return <h1>Sample</h1>;
 }
+
+Home.getLayout = function getLayout(page: ReactElement) {
+  return <Layout title="Home">{page}</Layout>;
+};

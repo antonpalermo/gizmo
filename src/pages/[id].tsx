@@ -1,6 +1,8 @@
+import Layout from "@gizmo/components/Layout";
 import baseUrl from "@gizmo/utils/baseUrl";
 import { Scratch } from "@prisma/client";
 import { GetServerSideProps } from "next";
+import { ReactElement } from "react";
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const request = await fetch(`${baseUrl()}/api/scratches/${query.id}`);
@@ -29,3 +31,7 @@ export default function ScratchDetails({ scratch }: ScratchDetailsProps) {
     </div>
   );
 }
+
+ScratchDetails.getLayout = function getLayout(page: ReactElement) {
+  return <Layout title="Home">{page}</Layout>;
+};
