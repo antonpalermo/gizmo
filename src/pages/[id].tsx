@@ -1,6 +1,8 @@
+import EditorArea from "@gizmo/components/EditorArea";
 import Layout from "@gizmo/components/Layout";
 import baseUrl from "@gizmo/utils/baseUrl";
 import { Scratch } from "@prisma/client";
+import { JSONContent } from "@tiptap/react";
 import { GetServerSideProps } from "next";
 import { ReactElement } from "react";
 
@@ -25,9 +27,12 @@ export interface ScratchDetailsProps {
 
 export default function ScratchDetails({ scratch }: ScratchDetailsProps) {
   return (
-    <div>
+    <div className="prose mx-auto">
       <h1>{scratch.header}</h1>
-      {JSON.stringify(scratch)}
+      <EditorArea
+        content={scratch.rawContent as JSONContent}
+        isEditable={true}
+      />
     </div>
   );
 }

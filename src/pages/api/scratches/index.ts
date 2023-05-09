@@ -10,6 +10,8 @@ export default async function handler(
 ) {
   const session = await getAuthServerSession(req, res);
 
+  console.log(session);
+
   try {
     switch (req.method) {
       case "POST":
@@ -20,9 +22,11 @@ export default async function handler(
         return res.status(201).json(createdScratch);
 
       case "GET":
-        const findAllScratches = await prisma.scratch.findMany()
-        return res.status(200).json(findAllScratches)
-
+        const findAllScratches = await prisma.scratch.findMany({
+          where: { owner: session?.user?.email! }
+        });
+        console.log(findAllScratches);
+        return res.status(200).json(findAllScratches);
       default:
         return res.status(405).end();
     }

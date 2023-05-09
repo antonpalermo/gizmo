@@ -13,7 +13,8 @@ datasource db {
 model Scratch {
   id          String   @id @unique @default(cuid())
   header      String   @default("Untitled Scratch")
-  owner       String   @unique
+  rawContent  Json     @default("{\"type\": \"doc\", \"content\": []}")
+  owner       String
   createdDate DateTime @default(now())
   updatedDate DateTime @updatedAt
 

@@ -35,6 +35,8 @@ export default function Home({ scratches }: HomeProps) {
     ({ scratch, setScratches }) => [scratch, setScratches]
   );
 
+  console.log(scratches)
+
   useEffect(() => {
     setScratches(scratches);
     // eslint-disable-next-line react-hooks/exhaustive-deps
