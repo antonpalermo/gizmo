@@ -23,7 +23,9 @@ export default function Layout({ title, ...props }: LayoutProps) {
       </Head>
       <Sidenav />
       <Navbar />
-      <div className="absolute bottom-0 left-64 right-0 top-20" {...props} />
+      <div className="absolute bottom-0 left-64 right-0 top-20">
+        <div className="mx-10" {...props} />
+      </div>
     </main>
   );
 }

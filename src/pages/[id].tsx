@@ -26,7 +26,7 @@ export interface ScratchDetailsProps {
 export default function ScratchDetails({ scratch }: ScratchDetailsProps) {
   return (
     <div>
-      <h1>Scratch Details</h1>
+      <h1>{scratch.header}</h1>
       {JSON.stringify(scratch)}
     </div>
   );
