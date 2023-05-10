@@ -25,7 +25,6 @@ export default async function handler(
         const findAllScratches = await prisma.scratch.findMany({
           where: { owner: session?.user?.email! }
         });
-        console.log(findAllScratches);
         return res.status(200).json(findAllScratches);
       default:
         return res.status(405).end();

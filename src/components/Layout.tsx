@@ -1,10 +1,12 @@
-import { HTMLAttributes } from "react";
+import { HTMLAttributes, useEffect } from "react";
 
 import Head from "next/head";
 import { Inter } from "next/font/google";
 
 import Navbar from "@gizmo/components//Navbar";
 import Sidenav from "@gizmo/components/Sidenav";
+
+import { useScratchStore } from "@gizmo/store";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -16,6 +18,19 @@ export interface LayoutProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export default function Layout({ title, ...props }: LayoutProps) {
+  const setScratches = useScratchStore(selector => selector.setScratches);
+
+  async function getSidenavLinks() {
+    const request = await fetch("/api/scratches");
+    const scratches = await request.json();
+    setScratches(scratches);
+  }
+
+  useEffect(() => {
+    getSidenavLinks();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <main className={`${inter.className}`}>
       <Head>

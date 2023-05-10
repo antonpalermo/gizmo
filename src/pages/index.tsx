@@ -31,17 +31,6 @@ export interface HomeProps {
 }
 
 export default function Home({ scratches }: HomeProps) {
-  const [scratch, setScratches] = useScratchStore(
-    ({ scratch, setScratches }) => [scratch, setScratches]
-  );
-
-  console.log(scratches)
-
-  useEffect(() => {
-    setScratches(scratches);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   return <h1>Sample</h1>;
 }
 
