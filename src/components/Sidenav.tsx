@@ -1,4 +1,6 @@
 import Link from "next/link";
+
+import { PlusIcon } from "@heroicons/react/24/outline";
 import { useScratchStore } from "@gizmo/store";
 
 export default function Sidenav() {
@@ -14,6 +16,9 @@ export default function Sidenav() {
           Home
         </Link>
         <hr />
+        <div className="inline-flex w-full items-center justify-between px-3 py-2">
+          <span className="text-sm font-medium text-slate-600">Scratches</span>
+        </div>
         {scratches.map(scratch => (
           <Link
             key={scratch.id}

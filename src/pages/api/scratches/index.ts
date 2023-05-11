@@ -10,14 +10,12 @@ export default async function handler(
 ) {
   const session = await getAuthServerSession(req, res);
 
-  console.log(session);
-
   try {
     switch (req.method) {
       case "POST":
         const { header } = req.body;
         const createdScratch = await prisma.scratch.create({
-          data: { header, owner: session?.user?.email as string }
+          data: { header, owner: session?.user?.email! }
         });
         return res.status(201).json(createdScratch);
 
