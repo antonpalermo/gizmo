@@ -3,6 +3,7 @@ import { HTMLAttributes, useEffect } from "react";
 import Head from "next/head";
 import { Inter } from "next/font/google";
 
+import Modal from "@gizmo/components/Modal";
 import Navbar from "@gizmo/components//Navbar";
 import Sidenav from "@gizmo/components/Sidenav";
 
@@ -36,8 +37,9 @@ export default function Layout({ title, ...props }: LayoutProps) {
       <Head>
         <title>{title}</title>
       </Head>
-      <Sidenav />
+      <Modal />
       <Navbar />
+      <Sidenav />
       <div className="absolute bottom-0 left-64 right-0 top-20">
         <div className="mx-10" {...props} />
       </div>
