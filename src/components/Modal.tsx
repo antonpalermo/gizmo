@@ -2,18 +2,10 @@ import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 
 import { useModal } from "@gizmo/store";
-import CreateScratch, { FormFields } from "@gizmo/components/CreateScratch";
-import { FormikHelpers } from "formik";
+import CreateScratch from "@gizmo/components/CreateScratch";
 
 export default function Modal() {
   const [isOpen, toggle] = useModal(({ isOpen, toggle }) => [isOpen, toggle]);
-
-  async function handleSubmit(
-    value: FormFields,
-    helpers: FormikHelpers<FormFields>
-  ) {
-    console.log(value);
-  }
 
   return (
     <Transition appear show={isOpen} as={Fragment}>
@@ -48,31 +40,7 @@ export default function Modal() {
                 >
                   Create new scratch
                 </Dialog.Title>
-                <div className="mt-2">
-                  <p className="text-sm text-gray-500">
-                    Create new scratch by providing an awsome name then compose
-                    the content later.
-                  </p>
-                </div>
-
-                <CreateScratch onSubmit={handleSubmit} />
-
-                <div className="mt-4 space-x-2">
-                  <button
-                    type="button"
-                    className="inline-flex justify-center rounded-md border border-transparent px-4 py-2 text-sm font-medium text-red-500 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                    onClick={toggle}
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    type="submit"
-                    className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                    onClick={toggle}
-                  >
-                    Create Scratch!
-                  </button>
-                </div>
+                <CreateScratch />
               </Dialog.Panel>
             </Transition.Child>
           </div>
