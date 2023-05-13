@@ -2,9 +2,18 @@ import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 
 import { useModal } from "@gizmo/store";
+import CreateScratch, { FormFields } from "@gizmo/components/CreateScratch";
+import { FormikHelpers } from "formik";
 
-export default function MyModal() {
+export default function Modal() {
   const [isOpen, toggle] = useModal(({ isOpen, toggle }) => [isOpen, toggle]);
+
+  async function handleSubmit(
+    value: FormFields,
+    helpers: FormikHelpers<FormFields>
+  ) {
+    console.log(value);
+  }
 
   return (
     <Transition appear show={isOpen} as={Fragment}>
@@ -46,6 +55,8 @@ export default function MyModal() {
                   </p>
                 </div>
 
+                <CreateScratch onSubmit={handleSubmit} />
+
                 <div className="mt-4 space-x-2">
                   <button
                     type="button"
@@ -55,7 +66,7 @@ export default function MyModal() {
                     Cancel
                   </button>
                   <button
-                    type="button"
+                    type="submit"
                     className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                     onClick={toggle}
                   >

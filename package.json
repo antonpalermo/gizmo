@@ -17,6 +17,7 @@
     "@tiptap/starter-kit": "^2.0.3",
     "eslint": "8.39.0",
     "eslint-config-next": "13.3.2",
+    "formik": "^2.2.9",
     "next": "13.3.2",
     "next-auth": "^4.22.1",
     "react": "18.2.0",
