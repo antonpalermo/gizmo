@@ -1,6 +1,6 @@
 import { Form, Formik, FormikHelpers } from "formik";
 import { Scratch } from "@prisma/client";
-import { useModal } from "@gizmo/store";
+import { useModal, useScratchStore } from "@gizmo/store";
 
 export interface FormFields extends Pick<Scratch, "header"> {}
 
@@ -8,6 +8,7 @@ interface CreateScratchProps {}
 
 export default function CreateScratch(props: CreateScratchProps) {
   const toggle = useModal(selector => selector.toggle);
+  const addScratch = useScratchStore(selector => selector.addScratch);
 
   const initialData: FormFields = {
     header: ""
@@ -17,7 +18,13 @@ export default function CreateScratch(props: CreateScratchProps) {
     value: FormFields,
     helpers: FormikHelpers<FormFields>
   ) {
-    console.log(value);
+    const request = await fetch("/api/scratches", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(value)
+    });
+    const scratch = await request.json();
+    addScratch(scratch);
   }
 
   return (
@@ -29,7 +36,7 @@ export default function CreateScratch(props: CreateScratchProps) {
         </p>
       </div>
       <Formik initialValues={initialData} onSubmit={onSubmit}>
-        {({ handleChange }) => (
+        {({ handleChange, isSubmitting }) => (
           <Form>
             <div className="flex w-full flex-col items-stretch pt-3 ">
               <label
@@ -50,6 +57,7 @@ export default function CreateScratch(props: CreateScratchProps) {
                 type="submit"
                 className="float-right inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                 onClick={toggle}
+                disabled={isSubmitting}
               >
                 Create Scratch!
               </button>
