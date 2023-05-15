@@ -2,7 +2,7 @@ import { Prisma } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 
 import { prisma } from "@gizmo/utils/prisma";
-import getAuthServerSession from "@gizmo/utils/auth/getAuthServerSession";
+import getAuthServerSession from "@gizmo/utils/auth/getCurrentUser";
 
 export default async function handler(
   req: NextApiRequest,
