@@ -23,7 +23,7 @@ export default function LoginPage() {
           <span className="w-full border-t" />
         </div>
         <div className="relative flex justify-center text-xs uppercase">
-          <span className="text-muted-foreground bg-white px-2">
+          <span className="text-muted-foreground bg-slate-50 px-2">
             Or continue with
           </span>
         </div>
