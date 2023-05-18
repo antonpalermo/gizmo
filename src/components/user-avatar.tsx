@@ -11,8 +11,8 @@ export default function UserAvatar({ user }: UserAvatarProps) {
   return (
     <Image
       className="rounded-full block"
-      width={30}
-      height={30}
+      width={35}
+      height={35}
       src={user.image || ""}
       alt={`${user.name} avatar`}
     />
