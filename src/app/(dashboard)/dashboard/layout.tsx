@@ -26,7 +26,7 @@ export default async function DashboardLayout({
           <UserNavMenu user={user} />
         </div>
       </header>
-      <div>
+      <div className="container mx-auto">
         <main>{children}</main>
       </div>
     </div>

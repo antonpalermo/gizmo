@@ -1,7 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import * as React from "react";
+
+import Image from "next/image";
+import { signIn } from "next-auth/react";
 
 function Provider({
   className,
@@ -18,7 +20,8 @@ function Provider({
 export default function AuthProviders() {
   return (
     <div className="space-y-2">
-      <Provider>
+      {/* TODO: update /dashboard the return url of the page. */}
+      <Provider onClick={() => signIn("google", { callbackUrl: "/dashboard" })}>
         <Image
           src="/google.svg"
           className="mr-3"
