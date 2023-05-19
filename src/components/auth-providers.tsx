@@ -3,6 +3,7 @@
 import * as React from "react";
 
 import Image from "next/image";
+
 import { signIn } from "next-auth/react";
 
 function Provider({
@@ -31,7 +32,7 @@ export default function AuthProviders() {
         />{" "}
         Sign in with Google
       </Provider>
-      <Provider>
+      <Provider onClick={() => signIn("github", { callbackUrl: "/dashboard" })}>
         <Image
           src="/github.svg"
           className="mr-3"
