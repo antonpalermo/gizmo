@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 
 import UserNavMenu from "@gizmo/components/user-nav-menu";
 import getCurrentUser from "@gizmo/utils/auth/getCurrentUser";
+import DashboardSidenav from "@gizmo/components/sidenav";
 
 export interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -26,7 +27,10 @@ export default async function DashboardLayout({
           <UserNavMenu user={user} />
         </div>
       </header>
-      <div className="container mx-auto">
+      <div className="container mx-auto grid gap-10 md:grid-cols-[230px_1fr]">
+        <aside className="hidden w-[230px] md:flex">
+          <DashboardSidenav />
+        </aside>
         <main>{children}</main>
       </div>
     </div>

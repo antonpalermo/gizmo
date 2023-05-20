@@ -5,6 +5,7 @@ import { Menu } from "@headlessui/react";
 
 import Link from "next/link";
 import Image from "next/image";
+import { signOut } from "next-auth/react";
 
 export interface UserNavMenuProps {
   user: Pick<User, "name" | "image" | "email">;
@@ -52,8 +53,6 @@ export default function UserNavMenu({ user }: UserNavMenuProps) {
                 Accounts
               </Link>
             </Menu.Item>
-          </div>
-          <div className="p-1">
             <Menu.Item>
               <Link
                 href={"/"}
@@ -62,13 +61,17 @@ export default function UserNavMenu({ user }: UserNavMenuProps) {
                 Settings
               </Link>
             </Menu.Item>
+          </div>
+          <div className="p-1">
             <Menu.Item>
-              <Link
-                href={"/"}
-                className="block rounded px-4 py-2 text-sm hover:bg-gray-100"
+              <button
+                onClick={() =>
+                  signOut({ callbackUrl: `${window.location.origin}/login` })
+                }
+                className="w-full rounded px-4 py-2 text-left text-sm hover:bg-gray-100"
               >
                 Sign Out
-              </Link>
+              </button>
             </Menu.Item>
           </div>
         </div>

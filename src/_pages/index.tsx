@@ -8,7 +8,7 @@ import { useScratchStore } from "@gizmo/store";
 import baseUrl from "@gizmo/utils/baseUrl";
 
 import Navbar from "@gizmo/components/Navbar";
-import Sidenav from "@gizmo/components/Sidenav";
+import Sidenav from "@gizmo/components/_Sidenav";
 import EditorArea from "@gizmo/components/EditorArea";
 import Layout from "@gizmo/components/Layout";
 

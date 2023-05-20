@@ -5,7 +5,7 @@ import { Inter } from "next/font/google";
 
 import Modal from "@gizmo/components/Modal";
 import Navbar from "@gizmo/components//Navbar";
-import Sidenav from "@gizmo/components/Sidenav";
+import Sidenav from "@gizmo/components/_Sidenav";
 
 import { useScratchStore } from "@gizmo/store";
 
