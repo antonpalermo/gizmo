@@ -65,3 +65,10 @@ model VerificationToken {
   @@unique([identifier, token])
   @@map(name: "verification_token")
 }
+
+model Blogs {
+  id    String @id @default(cuid())
+  title String @default("Untitled Blog Posts")
+
+  @@map("blogs")
+}
