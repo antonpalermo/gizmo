@@ -67,8 +67,11 @@ model VerificationToken {
 }
 
 model Blogs {
-  id    String @id @default(cuid())
-  title String @default("Untitled Blog Posts")
+  id          String   @id @default(cuid())
+  title       String   @default("Untitled")
+  isPublished Boolean  @default(false)
+  createdAt   DateTime @default(now()) @map(name: "created_at")
+  updatedAt   DateTime @updatedAt @map(name: "updated_at")
 
   @@map("blogs")
 }
