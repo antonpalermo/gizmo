@@ -1,34 +1,34 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
-import { PlusIcon } from "@heroicons/react/24/outline";
-import { useScratchStore } from "@gizmo/store";
-
-export default function Sidenav() {
-  const scratches = useScratchStore(store => store.scratches);
+export default function DashboardSidenav() {
+  const path = usePathname();
 
   return (
-    <div className="fixed inset-y-0 left-0 w-64 border border-gray-300 bg-gray-100">
-      <div className="my-10 space-y-1 px-3">
+    <nav className="w-full">
+      <div className="mb-6">
         <Link
-          href={{ pathname: "/" }}
-          className="block rounded px-3 py-2 text-sm font-medium hover:bg-gray-200"
+          href={"/"}
+          className={`${
+            path === "/dashboard" ? "bg-gray-100" : ""
+          } block w-full rounded-md px-4 py-2 text-sm font-semibold hover:bg-gray-100`}
         >
           Home
         </Link>
-        <hr />
-        <div className="inline-flex w-full items-center justify-between px-3 py-2">
-          <span className="text-sm font-medium text-slate-600">Scratches</span>
-        </div>
-        {scratches.map(scratch => (
-          <Link
-            key={scratch.id}
-            href={{ pathname: "/[id]", query: { id: scratch.id } }}
-            className="block rounded px-3 py-2 text-sm font-medium hover:bg-gray-200"
-          >
-            {scratch.header}
-          </Link>
-        ))}
       </div>
-    </div>
+      <span className="text-xs font-semibold text-gray-500">Your Rooms</span>
+      <div className="py-3">
+        <Link
+          href={"/"}
+          className={`${
+            path === "/dashboard/some-id" ? "bg-gray-100" : ""
+          } block w-full rounded-md px-4 py-2 text-sm font-semibold hover:bg-gray-100`}
+        >
+          BSIT 1A Section 1
+        </Link>
+      </div>
+    </nav>
   );
 }
