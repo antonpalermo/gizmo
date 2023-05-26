@@ -3,7 +3,7 @@ import * as React from "react";
 import { notFound } from "next/navigation";
 
 import UserNavMenu from "@gizmo/components/user-nav-menu";
-import getCurrentUser from "@gizmo/utils/auth/getCurrentUser";
+import getCurrentUser from "@gizmo/libs/auth/getCurrentUser";
 import DashboardSidenav from "@gizmo/components/sidenav";
 import Link from "next/link";
 

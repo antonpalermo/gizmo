@@ -1,7 +1,7 @@
 import NextAuth from "next-auth/next";
 import { NextApiRequest, NextApiResponse } from "next";
 
-import options from "@gizmo/utils/auth/options";
+import options from "@gizmo/libs/auth/options";
 
 export default async function handler(
   req: NextApiRequest,

@@ -1,4 +1,4 @@
-import { prisma } from "@gizmo/utils/prisma";
+import { prisma } from "@gizmo/libs/prisma";
 
 export default async function DraftsPage() {
   const blogs = await prisma.blogs.findMany();
