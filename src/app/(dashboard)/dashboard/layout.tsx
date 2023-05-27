@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 
 import UserNavMenu from "@gizmo/components/user-nav-menu";
 import getCurrentUser from "@gizmo/libs/auth/getCurrentUser";
-import DashboardSidenav from "@gizmo/components/sidenav";
+import DashboardSidenav from "@gizmo/components/side-nav";
 import Link from "next/link";
 
 export interface DashboardLayoutProps {
