@@ -49,10 +49,10 @@ model User {
   email         String?   @unique
   emailVerified DateTime?
   image         String?
-  createdAt     DateTime  @default(now()) @map(name: "created_at")
-  updatedAt     DateTime  @updatedAt @map(name: "updated_at")
   accounts      Account[]
   sessions      Session[]
+  createdAt     DateTime  @default(now()) @map(name: "created_at")
+  updatedAt     DateTime  @updatedAt @map(name: "updated_at")
 
   @@map(name: "users")
 }
@@ -66,12 +66,25 @@ model VerificationToken {
   @@map(name: "verification_token")
 }
 
-model Blogs {
+model Blog {
   id          String   @id @default(cuid())
   title       String   @default("Untitled")
   isPublished Boolean  @default(false)
+  content     Content  @relation(fields: [contentId], references: [id])
+  contentId   String   @unique @map("content_id")
   createdAt   DateTime @default(now()) @map(name: "created_at")
   updatedAt   DateTime @updatedAt @map(name: "updated_at")
 
   @@map("blogs")
+}
+
+model Content {
+  id        String   @id @unique @default(cuid())
+  raw       Json     @default("{\"type\": \"doc\", \"content\": \"[]\"}")
+  slug      String   @default("{\"type\": \"doc\", \"content\": \"[]\"}")
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @updatedAt @map(name: "updated_at")
+  Blogs     Blog?
+
+  @@map("contents")
 }
