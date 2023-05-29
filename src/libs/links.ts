@@ -1,12 +1,16 @@
-type Item = {
+type MenuItem = {
   label: string;
   href: string;
 };
 
-export const MainMenu: Item[] = [
+export const SidenavMenu: MenuItem[] = [
   {
     label: "Home",
     href: "/dashboard"
+  },
+  {
+    label: "Blogs",
+    href: "/dashboard/blogs"
   },
   {
     label: "Drafts",

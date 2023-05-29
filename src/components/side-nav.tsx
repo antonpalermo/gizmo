@@ -3,15 +3,15 @@
 import Link from "next/link";
 
 import { usePathname } from "next/navigation";
-import { MainMenu } from "@gizmo/libs/links";
+import { SidenavMenu } from "@gizmo/libs/links";
 
 export default function DashboardSidenav() {
   const path = usePathname();
 
   return (
-    <nav className="w-full my-10">
+    <nav className="sticky top-0 py-10">
       <div className="mb-6 space-y-2">
-        {MainMenu.map(menu => (
+        {SidenavMenu.map(menu => (
           <Link
             key={menu.label}
             href={menu.href}

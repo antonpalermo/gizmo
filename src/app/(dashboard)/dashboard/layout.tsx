@@ -26,7 +26,7 @@ export default async function DashboardLayout({
       <aside className="hidden w-[316px] px-10 md:flex md:flex-col">
         <DashboardSidenav />
       </aside>
-      <div className="">
+      <div>
         <header className="sticky top-0 z-40 border-b border-gray-200 bg-slate-50 py-4">
           <div className="container mx-auto flex w-full items-center justify-end px-10">
             <UserNavMenu user={user} />
