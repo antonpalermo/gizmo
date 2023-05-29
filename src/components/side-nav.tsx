@@ -9,7 +9,7 @@ export default function DashboardSidenav() {
   const path = usePathname();
 
   return (
-    <nav className="w-full">
+    <nav className="w-full my-10">
       <div className="mb-6 space-y-2">
         {MainMenu.map(menu => (
           <Link

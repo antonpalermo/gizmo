@@ -17,27 +17,23 @@ export default async function DashboardLayout({
   const user = await getCurrentUser();
 
   if (!user) {
+    // TODO: if no user then return to login page
     return notFound();
   }
 
   return (
-    <div className="flex min-h-screen flex-col space-y-5">
-      <header className="sticky top-0 z-40 border-b border-gray-200 bg-slate-50">
-        <div className="container mx-auto flex w-full items-center justify-end py-4">
-          <div className="inline-flex items-center">
-            <div className="mr-2">
-              <button className="rounded hover:bg-slate-500 px-3 py-2">Create</button>
-            </div>
+    <main className="grid min-h-screen divide-x md:grid-cols-[316px_1fr]">
+      <aside className="hidden w-[316px] px-10 md:flex md:flex-col">
+        <DashboardSidenav />
+      </aside>
+      <div className="">
+        <header className="sticky top-0 z-40 border-b border-gray-200 bg-slate-50 py-4">
+          <div className="container mx-auto flex w-full items-center justify-end px-10">
             <UserNavMenu user={user} />
           </div>
-        </div>
-      </header>
-      <div className="container mx-auto grid gap-10 md:grid-cols-[230px_1fr]">
-        <aside className="hidden w-[230px] md:flex">
-          <DashboardSidenav />
-        </aside>
-        <main>{children}</main>
+        </header>
+        <div className="px-10">{children}</div>
       </div>
-    </div>
+    </main>
   );
 }

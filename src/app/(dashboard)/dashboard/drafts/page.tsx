@@ -1,7 +1,7 @@
 import { prisma } from "@gizmo/libs/prisma";
 
 export default async function DraftsPage() {
-  const blogs = await prisma.blogs.findMany();
+  const blogs = await prisma.blog.findMany();
 
   return (
     <div>
