@@ -1,12 +1,17 @@
+import { Metadata } from "next";
+
 import Headline from "@gizmo/components/headline";
 import DashboardShell from "@gizmo/components/shell";
-import { Metadata } from "next";
+
+import { prisma } from "@gizmo/libs/prisma";
 
 export const metadata: Metadata = {
   title: "Blogs"
 };
 
-export default function BlogsPage() {
+export default async function BlogsPage() {
+  const blogs = await prisma.blog.findMany();
+
   return (
     <DashboardShell>
       <Headline>
@@ -18,6 +23,9 @@ export default function BlogsPage() {
           New Blog Post
         </button>
       </Headline>
+      {blogs.map(blog => (
+        <div>{JSON.stringify(blog)}</div>
+      ))}
     </DashboardShell>
   );
 }
