@@ -23,7 +23,7 @@ export default async function BlogsPage() {
         <CreateBlogButton />
       </Headline>
       {blogs.map(blog => (
-        <div>{JSON.stringify(blog)}</div>
+        <div key={blog.id}>{JSON.stringify(blog)}</div>
       ))}
     </DashboardShell>
   );
