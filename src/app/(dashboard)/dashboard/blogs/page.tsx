@@ -5,6 +5,7 @@ import { prisma } from "@gizmo/libs/prisma";
 import Headline from "@gizmo/components/headline";
 import DashboardShell from "@gizmo/components/shell";
 import CreateBlogButton from "@gizmo/components/create-blog-button";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Blogs"
@@ -23,7 +24,9 @@ export default async function BlogsPage() {
         <CreateBlogButton />
       </Headline>
       {blogs.map(blog => (
-        <div key={blog.id}>{JSON.stringify(blog)}</div>
+        <div key={blog.id}>{JSON.stringify(blog)}
+          <Link href={`/edit/${blog.id}`}>Edit</Link>
+        </div>
       ))}
     </DashboardShell>
   );
