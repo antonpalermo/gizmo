@@ -1,12 +1,26 @@
 "use client";
 
-import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 
-export default function EditorArea() {
-  const editor = useEditor({
-    extensions: [StarterKit]
-  });
+import { useEditor, EditorContent, JSONContent } from "@tiptap/react";
 
-  return <EditorContent editor={editor} />;
+interface EditorAreaProps {
+  content: JSONContent;
+}
+
+export default function EditorArea({ content }: EditorAreaProps) {
+  const editor = useEditor(
+    {
+      extensions: [StarterKit],
+      content
+    },
+    [content]
+  );
+
+  return (
+    <div>
+      <textarea placeholder="Untitled" />
+      <EditorContent editor={editor} />
+    </div>
+  );
 }

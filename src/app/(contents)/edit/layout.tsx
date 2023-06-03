@@ -7,5 +7,5 @@ export interface ContentEditorLayoutProps {
 export default async function ContentEditorLayout({
   children
 }: ContentEditorLayoutProps) {
-  return <div>{children}</div>;
+  return <div className="container mx-auto">{children}</div>;
 }
