@@ -5,7 +5,6 @@ import { notFound } from "next/navigation";
 import UserNavMenu from "@gizmo/components/user-nav-menu";
 import getCurrentUser from "@gizmo/libs/auth/getCurrentUser";
 import DashboardSidenav from "@gizmo/components/side-nav";
-import Link from "next/link";
 
 export interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -18,6 +17,7 @@ export default async function DashboardLayout({
 
   if (!user) {
     // TODO: if no user then return to login page
+    // TODO: should be handled in the middleware
     return notFound();
   }
 
@@ -32,7 +32,7 @@ export default async function DashboardLayout({
             <UserNavMenu user={user} />
           </div>
         </header>
-        <div className="px-10">{children}</div>
+        {children}
       </div>
     </main>
   );

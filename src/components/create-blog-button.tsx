@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { Button } from "@gizmo/components/ui/button";
 
 export default function CreateBlogButton() {
   const router = useRouter();
@@ -19,12 +20,5 @@ export default function CreateBlogButton() {
     router.push(`/edit/${blogId.id}`);
   }
 
-  return (
-    <button
-      onClick={onClick}
-      className="rounded border border-gray-100 bg-white px-3 py-2"
-    >
-      New blog post
-    </button>
-  );
+  return <Button onClick={onClick}>Create New Blog</Button>;
 }
