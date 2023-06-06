@@ -2,21 +2,13 @@ import Headline from "@gizmo/components/headline";
 import DashboardShell from "@gizmo/components/shell";
 import { Button } from "@gizmo/components/ui/button";
 import { prisma } from "@gizmo/libs/prisma";
+import { formatDate } from "@gizmo/libs/utils";
 import Link from "next/link";
 
 export default async function DraftsPage() {
   const blogs = await prisma.blog.findMany({
     where: { isPublished: false }
   });
-
-  function formatDate(input: string | number): string {
-    const date = new Date(input);
-    return date.toLocaleDateString("en-US", {
-      month: "long",
-      day: "numeric",
-      year: "numeric"
-    });
-  }
 
   return (
     <DashboardShell>

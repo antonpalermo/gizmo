@@ -8,6 +8,7 @@ import CreateBlogButton from "@gizmo/components/create-blog-button";
 import Link from "next/link";
 
 import { Button } from "@gizmo/components/ui/button";
+import { formatDate } from "@gizmo/libs/utils";
 
 export const metadata: Metadata = {
   title: "Blogs"
@@ -17,15 +18,6 @@ export default async function BlogsPage() {
   const blogs = await prisma.blog.findMany({
     where: { isPublished: true }
   });
-
-  function formatDate(input: string | number): string {
-    const date = new Date(input);
-    return date.toLocaleDateString("en-US", {
-      month: "long",
-      day: "numeric",
-      year: "numeric"
-    });
-  }
 
   return (
     <DashboardShell>
