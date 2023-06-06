@@ -14,7 +14,9 @@ export const metadata: Metadata = {
 };
 
 export default async function BlogsPage() {
-  const blogs = await prisma.blog.findMany();
+  const blogs = await prisma.blog.findMany({
+    where: { isPublished: true }
+  });
 
   function formatDate(input: string | number): string {
     const date = new Date(input);
