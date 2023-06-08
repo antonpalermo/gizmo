@@ -26,6 +26,7 @@ import {
 } from "@gizmo/components/ui/alert-dialog";
 
 import { useDialog } from "@gizmo/store";
+import { useRouter } from "next/navigation";
 
 export interface DraftProps {
   blog: Blog;
@@ -56,11 +57,20 @@ function DraftMenu() {
   );
 }
 
-export function DraftDeleteDialog() {
-  const [isOpen, setIsOpen] = useDialog(state => [state.isOpen, state.toggle]);
+export function DraftDeleteDialog({ id }: { id: string }) {
+  const [isOpen, toggle] = useDialog(state => [state.isOpen, state.toggle]);
+
+  const router = useRouter();
+
+  async function proceedDelete() {
+    const request = await fetch(`/api/blogs/${id}`, { method: "DELETE" });
+    if (request.status == 204) {
+      router.refresh();
+    }
+  }
 
   return (
-    <AlertDialog open={isOpen} onOpenChange={setIsOpen}>
+    <AlertDialog open={isOpen} onOpenChange={toggle}>
       <AlertDialogContent>
         <AlertDialogHeader>
           Are you sure you want to delete this draft?
@@ -70,7 +80,14 @@ export function DraftDeleteDialog() {
         </AlertDialogDescription>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction className="bg-red-600 focus:ring-red-600">
+          <AlertDialogAction
+            onClick={async e => {
+              e.preventDefault();
+              await proceedDelete();
+              toggle();
+            }}
+            className="bg-red-600 focus:ring-red-600"
+          >
             Delete
           </AlertDialogAction>
         </AlertDialogFooter>
@@ -94,7 +111,7 @@ export default function Draft({ blog }: DraftProps) {
         </p>
       </div>
       <DraftMenu />
-      <DraftDeleteDialog />
+      <DraftDeleteDialog id={blog.id} />
     </div>
   );
 }
