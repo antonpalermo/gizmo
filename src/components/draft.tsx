@@ -15,12 +15,25 @@ import {
 import { formatDate } from "@gizmo/libs/utils";
 
 import { EllipsisVerticalIcon } from "@heroicons/react/24/outline";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader
+} from "@gizmo/components/ui/alert-dialog";
+
+import { useDialog } from "@gizmo/store";
 
 export interface DraftProps {
   blog: Blog;
 }
 
 function DraftMenu() {
+  const setIsOpen = useDialog(state => state.toggle);
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="flex h-8 w-8 items-center justify-center rounded-md border transition-colors hover:bg-muted">
@@ -32,11 +45,37 @@ function DraftMenu() {
           <Link href={""}>Edit</Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem className="flex cursor-pointer items-center text-destructive focus:text-destructive">
+        <DropdownMenuItem
+          onClick={() => setIsOpen()}
+          className="flex cursor-pointer items-center text-destructive focus:text-destructive"
+        >
           Delete
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
+  );
+}
+
+export function DraftDeleteDialog() {
+  const [isOpen, setIsOpen] = useDialog(state => [state.isOpen, state.toggle]);
+
+  return (
+    <AlertDialog open={isOpen} onOpenChange={setIsOpen}>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          Are you sure you want to delete this draft?
+        </AlertDialogHeader>
+        <AlertDialogDescription>
+          This action cannot be undone.
+        </AlertDialogDescription>
+        <AlertDialogFooter>
+          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogAction className="bg-red-600 focus:ring-red-600">
+            Delete
+          </AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
   );
 }
 
@@ -55,6 +94,7 @@ export default function Draft({ blog }: DraftProps) {
         </p>
       </div>
       <DraftMenu />
+      <DraftDeleteDialog />
     </div>
   );
 }
