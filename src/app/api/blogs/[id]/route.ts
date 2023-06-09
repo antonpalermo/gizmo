@@ -1,3 +1,4 @@
+import getCurrentUser from "@gizmo/libs/auth/getCurrentUser";
 import { Prisma } from "@prisma/client";
 import * as z from "zod";
 
@@ -11,6 +12,12 @@ export async function DELETE(
   req: Request,
   context: z.infer<typeof routeContextSchema>
 ) {
+  const user = await getCurrentUser();
+
+  if (!user) {
+    return new Response(null, { status: 401 });
+  }
+
   try {
     const { params } = routeContextSchema.parse(context);
 
