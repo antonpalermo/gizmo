@@ -12,8 +12,10 @@ export async function POST(req: Request) {
 
   try {
     const blog = await prisma.blog.create({
-      data: { content: { create: {} } },
-      select: { id: true }
+      data: {
+        content: { create: {} },
+        owner: { connect: { email: user.email! } }
+      }
     });
 
     return new Response(JSON.stringify(blog), { status: 201 });

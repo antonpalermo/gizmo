@@ -1,6 +1,7 @@
 import Draft from "@gizmo/components/draft";
 import Headline from "@gizmo/components/headline";
 import DashboardShell from "@gizmo/components/shell";
+import getCurrentUser from "@gizmo/libs/auth/getCurrentUser";
 
 import { prisma } from "@gizmo/libs/prisma";
 import { Metadata } from "next";
@@ -10,8 +11,10 @@ export const metadata: Metadata = {
 };
 
 export default async function DraftsPage() {
+  const user = await getCurrentUser();
+
   const blogs = await prisma.blog.findMany({
-    where: { isPublished: false }
+    where: { owner: { email: user?.email }, AND: { isPublished: false } }
   });
 
   return (
