@@ -1,4 +1,4 @@
-import Draft from "@gizmo/components/draft";
+import DraftItem from "@gizmo/components/draft-item";
 import Headline from "@gizmo/components/headline";
 import DashboardShell from "@gizmo/components/shell";
 import getCurrentUser from "@gizmo/libs/auth/getCurrentUser";
@@ -27,7 +27,7 @@ export default async function DraftsPage() {
       </Headline>
       <div className="my-10 grid grid-cols-1 gap-3">
         {blogs.map(blog => (
-          <Draft key={blog.id} blog={blog} />
+          <DraftItem key={blog.id} blog={blog} />
         ))}
       </div>
     </DashboardShell>
