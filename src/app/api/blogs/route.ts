@@ -10,6 +10,13 @@ export async function POST(req: Request) {
     return new Response(null, { status: 401 });
   }
 
+  if (user.role !== "admin") {
+    return new Response(
+      JSON.stringify({ message: "Only admins can create blogs" }),
+      { status: 401 }
+    );
+  }
+
   try {
     const blog = await prisma.blog.create({
       data: {
