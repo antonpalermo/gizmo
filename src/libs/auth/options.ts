@@ -23,23 +23,23 @@ const options: NextAuthOptions = {
       clientId: process.env.GITHUB_CLIENT_ID,
       clientSecret: process.env.GITHUB_CLIENT_SECRET
     })
-  ],
-  callbacks: {
-    async session({ token, session }) {
-      if (session.user) {
-        session.user = token;
-      }
+  ]
+  // callbacks: {
+  //   async session({ token, session }) {
+  //     if (session.user) {
+  //       session.user =;
+  //     }
 
-      return session;
-    },
-    async jwt({ token, user }) {
-      if (user) {
-        token.id = user.id;
-        token.role = user.role;
-      }
-      return token;
-    }
-  }
+  //     return session;
+  //   },
+  //   async jwt({ token, user }) {
+  //     if (user) {
+  //       token.id = user.id;
+  //       token.role = user.role;
+  //     }
+  //     return token;
+  //   }
+  // }
 };
 
 export default options;
