@@ -20,8 +20,19 @@ export async function DELETE(
 
   try {
     const { params } = routeContextSchema.parse(context);
+    const isOwner = await prisma?.blog.findUnique({
+      where: { id: params.id },
+      include: { owner: { select: { email: true } } }
+    });
 
-    await prisma?.blog.delete({ where: { id: params.id } });
+    if (isOwner?.owner.email === user.email) {
+      await prisma?.blog.delete({ where: { id: params.id } });
+    } else {
+      return new Response(
+        JSON.stringify({ message: "You can't delete other's post." }),
+        { status: 401 }
+      );
+    }
 
     return new Response(null, { status: 204 });
   } catch (e) {
